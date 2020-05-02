@@ -1,0 +1,24 @@
+@import "../../../styles/constants.scss";
+@import "../../../styles/mixins";
+
+.form-email-pass {
+  @include flex-style(flex, column, space-between);
+  height: 50px;
+  &__input {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid $main-elements-color;
+    font-size: inherit;
+    font-weight: inherit;
+    &:focus {
+      border-bottom: 1px solid $secondary-color;    
+    }
+  }
+  &__label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    &-error {
+      color: $error-color;
+    }
+  }
+}

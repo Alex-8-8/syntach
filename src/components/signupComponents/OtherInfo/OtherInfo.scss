@@ -1,0 +1,70 @@
+@import "../../../styles/constants.scss";
+@import "../../../styles/mixins";
+
+.other-info { 
+  @include flex-style(flex, column, center);
+  &__label {
+    margin-bottom: 10px;
+    font-size: 13.5px;
+  }
+  &__list {
+    display: flex;
+    width: 100%;
+  }
+  &__list-item {
+    @include flex-style(flex, row, center, center);
+    flex: 1;
+    position: relative;
+    height: 40px;
+    border: 1px solid $main-elements-color;
+    font-size: 13.5px;
+  }
+  &__radio-label,
+  &__radio-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+  }
+  &__radio-button {
+    opacity: 0.01;
+    cursor: pointer;
+    z-index: 100;
+  }
+  &__radio-button:checked + .other-info__radio-label {
+    background: $button-color;
+    color: #fff;
+    font-weight: 600;
+  }
+  &__resource-wrapper {
+    width: 100%;
+    position: relative;
+  }
+  &__resource-select {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $main-elements-color;
+    background: transparent;
+    cursor: pointer;
+    &:focus {
+      border: 1px solid $secondary-color;
+    }
+  }
+  &__resource-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    color: $button-color;
+    cursor: pointer;
+  }
+}
+
+.other-info:not(:last-child) {
+  margin-bottom: 15px;
+}

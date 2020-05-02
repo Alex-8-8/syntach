@@ -1,0 +1,33 @@
+@import "../../../styles/constants.scss";
+@import "../../../styles/mixins";
+
+.completed {
+  @include flex-style(flex, column, flex-start, center);
+  height: 100%;
+  position: relative;
+  &__icon {
+    position: absolute;
+    top: 35%;
+    right: 48%;
+    transform: scale(11);
+    color: #b6e885;
+  }
+  &__button {
+    width: fit-content;
+    height: 40px;
+    margin-top: auto;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid $button-color;
+    border-radius: 5px;
+    color: $button-color;
+    transition: color, background-color 0.3s;
+    &:hover {
+      color: #fff;
+      background-color: $button-color;
+    }
+  }
+  &__arrow {
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../../styles/constants.scss";
+
+.date-picker {
+  display: flex;
+  width: 330px;
+  @media (max-width: 400px) {
+    width: 270px;
+  }
+  &__field-wrapper {
+    height: 40px;
+    flex: 1;
+  }
+  &__date-select {
+    display: flex;
+    text-align-last: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid $main-elements-color;
+    color: $main-elements-color;
+    cursor: pointer;
+    &:focus {
+      color: #000;
+      border: 1px solid $secondary-color;
+    }
+  }
+}
