@@ -6,6 +6,11 @@
   &__label {
     margin-bottom: 10px;
     font-size: 13.5px;
+    &--error {
+      color: $error-color;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+    }
   }
   &__list {
     display: flex;

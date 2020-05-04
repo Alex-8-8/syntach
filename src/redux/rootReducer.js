@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import {stepsReducer} from './stepsReducers'
+import {mainReducer} from './mainReducers'
 
 export const rootReducer = combineReducers({
-    stepsReducer,
+    mainReducer,
     form: formReducer
   })

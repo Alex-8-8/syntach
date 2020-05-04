@@ -14,9 +14,11 @@ const formatDate = (date) => {
     return [year, month, day].join('-');
 }
 
-  export const DatePicker = ({input}) => {
+  export const DatePicker = ({input, meta, onErrorChange}) => {
     const [date, setDate] = useState(null);
     const [selectedDate, setSelectedDate] = useState('');
+    const dateNow = new Date();
+    const dateNowMiliSecs = dateNow.getTime()
 
         return (
             <div>
@@ -26,7 +28,7 @@ const formatDate = (date) => {
                         '1950-01-01'                    
                     }
                     endDate={                           
-                        '2020-05-01'                   
+                        formatDate(dateNow)                 
                     }
                     selectedDate={                      
                         selectedDate                    
@@ -46,14 +48,21 @@ const formatDate = (date) => {
                     onDateChange={(date) => {           
                         input.onChange(() => 
                         input.value = {
-                          day: date.getDay(),
-                          month: date.getMonth(),
+                          day: date.getDate(),
+                          month: date.getMonth() + 1,
                           year: date.getFullYear()
                         }
                         )
                         setDate(date);
-                        setSelectedDate(formatDate(date))
-
+                        setSelectedDate(formatDate(date));
+                        
+                        let pickedDateMiliSecs = date.getTime();
+                        const yearsOld = ((dateNowMiliSecs - pickedDateMiliSecs)/ (1000 * 3600 * 24)) / 365
+                        if (yearsOld < 18) {
+                          onErrorChange(true)
+                        } else {
+                          onErrorChange(false)
+                        }
                     }}
                     ids={                               
                         {

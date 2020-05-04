@@ -1,10 +1,15 @@
-import {NEXT_STEP, PREV_STEP} from './constants'
+import {
+  NEXT_STEP, 
+  PREV_STEP,
+  SET_ERROR
+} from './constants'
 
 const initialState = {
-    step: 1
+    step: 1,
+    error: false
   }
   
-  export const stepsReducer = (state = initialState, action) => {
+  export const mainReducer = (state = initialState, action) => {
     switch (action.type) {
       case NEXT_STEP:
         return {
@@ -15,6 +20,11 @@ const initialState = {
         return {
           ...state,
           step: state.step - 1
+        }
+      case SET_ERROR:
+        return {
+          ...state,
+          error: action.payload
         }
       default:
         return state;

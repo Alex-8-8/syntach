@@ -2,17 +2,22 @@ import React from 'react';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import clsx from 'clsx';
-import { nextStepAction, prevStepAction } from '../redux/actionCreators';
+import { 
+  nextStepAction, 
+  prevStepAction,
+} from '../redux/actionCreators';
 import {EmailPass} from './signupComponents/EmailPass/EmailPass';
-import {OtherInfo} from './signupComponents/OtherInfo/OtherInfo';
+import OtherInfo from './signupComponents/OtherInfo/OtherInfo';
 import {Completed} from './signupComponents/Completed/Completed'
 import './MyReduxForm.scss'
 
  const MyReduxForm = ({
    handleSubmit, 
    step,
+   error,
    nextStep,
    prevStep,
+   setError,
    valid,
    }) => {
   const getComponent = () => {
@@ -20,13 +25,15 @@ import './MyReduxForm.scss'
       case 1: 
         return <EmailPass/>
       case 2: 
-        return <OtherInfo/>
+        return <OtherInfo setError={setError}/>
       case 3: 
         return <Completed />
       default: 
         return <EmailPass />
     }
   }
+
+  
 
   return (
     <div className="signup">
@@ -82,7 +89,8 @@ import './MyReduxForm.scss'
             )} 
           onClick={nextStep} 
           type="button"
-          disabled={!valid}
+          
+          disabled={!valid || error}
         >
           Next
           <span>
@@ -90,7 +98,7 @@ import './MyReduxForm.scss'
               'fas fa-arrow-right',
               'signup__arrow',
               'signup__arrow--right',
-              (!valid) ? 'signup__arrow--hide'
+              (!valid || error) ? 'signup__arrow--hide'
                 : ''
               )}
             >
@@ -106,7 +114,8 @@ import './MyReduxForm.scss'
 const selector = formValueSelector('signup');
 
 const MapStateToProps = (state) => ({
-  step: state.stepsReducer.step,
+  step: state.mainReducer.step,
+  error: state.mainReducer.error,
   password: selector(state , 'password')
 })
 

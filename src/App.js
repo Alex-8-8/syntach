@@ -4,7 +4,7 @@ import {MyReduxForm} from './components/MyReduxForm'
 
 function App() {
   return (
-    <MyReduxForm />
+      <MyReduxForm />
   );
 }
 
